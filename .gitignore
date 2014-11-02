@@ -1,0 +1,33 @@
+if myHero.charName ~= "Ashe" then return end
+           
+            function OnLoad()
+                    PrintChat("Good job the script loads, now to find if it is stable :D")
+                   
+            end
+           
+            function OnTick()
+                   
+                    if not QCasted then CastSpell(_Q) end
+                   
+                    --PrintChat("true") else PrintChat("false") end
+            end
+           
+            function OnProcessSpell(unit, spell)
+                    local spellName = spell.name
+                    if unit.name == player.name and (spellName == "frostarrow") then
+                           
+                            CastSpell(_Q)      
+                    end
+            end
+           
+            function OnCreateObj(obj)
+                            if GetDistance(obj) < 100 and obj.name:lower():find("icesparkle") then
+                            QCasted = true
+                    end
+            end
+           
+            function OnDeleteObj(obj)
+                            if GetDistance(obj) < 100 and obj.name:lower():find("icesparkle") then
+                            QCasted = false
+                    end
+            end
